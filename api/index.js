@@ -1,4 +1,4 @@
-const { handleHealth, setCors } = require("../../src/handler");
+const { handleHealth, setCors } = require("../src/handler");
 
 module.exports = (req, res) => {
   setCors(res);

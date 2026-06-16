@@ -1,4 +1,4 @@
-const { handleMappings, setCors } = require("../../src/handler");
+const { handleMappings, setCors } = require("../src/handler");
 
 module.exports = async (req, res) => {
   setCors(res);

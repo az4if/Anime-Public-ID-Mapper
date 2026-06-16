@@ -1,13 +1,32 @@
 const { Pool } = require("pg");
 
+// Validate DATABASE_URL is set
+if (!process.env.DATABASE_URL) {
+  console.error("[FATAL] DATABASE_URL environment variable is not set!");
+}
+
 // Single pool instance reused across requests
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: process.env.DATABASE_SSL === "false" ? false : { rejectUnauthorized: false },
   max: process.env.DB_POOL_MAX ? parseInt(process.env.DB_POOL_MAX) : 5,
+  connectionTimeoutMillis: 10000,
+  idleTimeoutMillis: 30000,
+});
+
+// Log pool errors
+pool.on("error", (err) => {
+  console.error("[Pool Error]", err.message);
 });
 
 async function handleMappings(req, res) {
+  // Check env at request time too (important for serverless cold starts)
+  if (!process.env.DATABASE_URL) {
+    return res.status(500).json({
+      error: "Server misconfiguration: DATABASE_URL is not set",
+    });
+  }
+
   const query = req.query || {};
   const { mal_id, anilist_id, anidb_id, thetvdb_id } = query;
 
@@ -45,15 +64,36 @@ async function handleMappings(req, res) {
     return res.status(200).json(result.rows[0].data);
   } catch (err) {
     console.error("[DB Error]", err.message);
-    return res.status(500).json({ error: "Internal server error" });
+    // Return the actual error message to help debug (remove in production if preferred)
+    return res.status(500).json({
+      error: "Database error",
+      detail: err.message,
+    });
   }
 }
 
-function handleHealth(req, res) {
-  return res.status(200).json({
-    status: "ok",
-    message: "Anime Public DB Mapper is running",
+async function handleHealth(req, res) {
+  const dbUrl = process.env.DATABASE_URL;
+
+  // Test DB connection
+  let dbStatus = "ok";
+  let dbError = null;
+  try {
+    await pool.query("SELECT 1");
+  } catch (err) {
+    dbStatus = "error";
+    dbError = err.message;
+  }
+
+  return res.status(dbStatus === "ok" ? 200 : 500).json({
+    status: dbStatus === "ok" ? "ok" : "error",
+    message: "Anime Public DB Mapper",
     timestamp: new Date().toISOString(),
+    database: {
+      status: dbStatus,
+      configured: !!dbUrl,
+      ...(dbError && { error: dbError }),
+    },
   });
 }
 

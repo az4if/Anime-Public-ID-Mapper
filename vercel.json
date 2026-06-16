@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/mappings", "destination": "/api/mappings" },
+    { "source": "/",         "destination": "/api/index" }
+  ]
+}

@@ -1,4 +1,4 @@
-# Anime Public DB Mapper — Self Hosted
+# Anime Public ID Mapper — Self Hosted
 
 A public REST API for anime episode details and cross-site ID mappings.  
 Covers **15,000+ anime** with **200,000+ episodes**.  
@@ -189,8 +189,8 @@ cp .env.example .env
 docker compose up --build
 
 # Or manually
-docker build -t anime-public-db-mapper .
-docker run -p 3000:3000 -e DATABASE_URL="your_connection_string" anime-public-db-mapper
+docker build -t anime-public-id-mapper .
+docker run -p 3000:3000 -e DATABASE_URL="your_connection_string" anime-public-id-mapper
 ```
 
 Test it:

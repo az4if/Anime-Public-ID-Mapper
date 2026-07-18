@@ -112,6 +112,11 @@ Copy `.env.example` to `.env` and fill in your values:
 Find these under **Supabase → Connect → Connection string**.
 
 ---
+## Proxy (Optional)
+
+Use `worker.js`, a Cloudflare Worker, to access your deployed database via a proxy URL.
+
+---
 
 ## Deployment
 

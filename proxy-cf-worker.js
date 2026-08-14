@@ -16,7 +16,7 @@ export default {
     // 2. Construct the target API URL
     const targetUrl = new URL(
       incomingUrl.pathname + incomingUrl.search,
-      "https://anime-public-db-mapper.vercel.app"
+      "https://anime-public-db-mapper.vercel.aapp" // <-- Use your own deployed vercel deployed url
     );
     // URL: https://anime-public-db-mapper.vercel.app
     // URL-2: https://zenshin-supabase-api-myig.onrender.com

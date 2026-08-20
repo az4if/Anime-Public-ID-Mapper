@@ -8,8 +8,8 @@ Works on **localhost**, **Vercel**, **Render**, **Railway**, **Fly.io**, and **D
 
 ## Database Setup
 
-The database dump is included in this repo as **`anime-db.sql.gz`** or find the latest Releases for the SQL latest dump.  
-You need to decompress it and load it into a **Supabase** or local **PostgreSQL** database before running the API.
+The database dump is available in the latest Releases as `anime-db.sql`.
+You need to download it and load it into a Supabase or local PostgreSQL database before running the API.
 
 ### ☁️ Restore to Supabase (Recommended)
 

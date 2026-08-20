@@ -8,7 +8,7 @@ Works on **localhost**, **Vercel**, **Render**, **Railway**, **Fly.io**, and **D
 
 ## Database Setup
 
-The database dump is available in the latest Releases as `anime-db.sql`.
+The database dump is available in the latest Releases as `anime-db.sql`. [Download anime-db.sql](https://github.com/az4if/Anime-Public-ID-Mapper/releases/latest/download/anime-db.sql)
 You need to download it and load it into a Supabase or local PostgreSQL database before running the API.
 
 ### ☁️ Restore to Supabase (Recommended)

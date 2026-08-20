@@ -8,14 +8,15 @@ Works on **localhost**, **Vercel**, **Render**, **Railway**, **Fly.io**, and **D
 
 ## Database Setup
 
-The database dump is included in this repo as **`anime-db.sql.gz`** or find the latest Releases.  
+The database dump is included in this repo as **`anime-db.sql.gz`** or find the latest Releases for the SQL latest dump.  
 You need to decompress it and load it into a **Supabase** or local **PostgreSQL** database before running the API.
 
 ### ☁️ Restore to Supabase (Recommended)
 
 1. Create a free project at [supabase.com](https://supabase.com)
 2. Go to **Project Settings → Connect → Direct connection → URI** and copy the connection string
-3. Decompress and restore:
+3. You can run the restore_anime-db.bat after modifying the URL and SQL location in it with any text editor, or you can follow below processes.
+4. Decompress and restore:
 
 **Windows (PowerShell):**
 ```powershell
